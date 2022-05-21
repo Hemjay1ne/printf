@@ -1,23 +1,42 @@
 #include "main.h"
-#include <stdio.h>
-#include <limits.h>
-
 /**
- * main - Entry point
+ * print_rot13 - Print rot13
+ * @vlist: arguments passed to print
+ * @output_p: Host output
+ * @o_p: output position
  *
- * Return: Always 0
+ * Description: Fuction that print rot13
+ * Return: the int
  */
-
-int main(void)
+int print_rot13(va_list vlist, char *output_p, int o_p)
 {
-	int a;
+	int x = 0, y;
+	char *pt = va_arg(vlist, char *);
+	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
-	_printf("%R\n", "123");
-	a = _printf("%R\n", "hello");
-	_printf("%d\n", a);
-	a = printf("%s\n", "hello");
-	printf("%d\n", a);
-	a = _printf("%R\n", "Holberton school");
-	printf("%d\n", a);
-	return (0);
+	if (!pt)
+		pt = "(ahyy)";
+	while (pt[x])
+	{
+		y = 0;
+		while (alpha[y])
+		{
+			if (pt[x] == alpha[x])
+			{
+				output_p[o_p] = rot13[y];
+				o_p++;
+				break;
+			}
+			if (pt[x] < 65 || (pt[x] > 90 && pt[x] < 97) || pt[x] > 122)
+			{
+				output_p[o_p] = pt[x];
+				o_p++;
+				break;
+			}
+			y++;
+		}
+		x++;
+	}
+	return (o_p);
 }
