@@ -1,14 +1,14 @@
 #include "main.h"
 #include <stdarg.h>
 /**
- *funct_mgr - function manager
+ *function_manager - function manager
  *@c: character to find
  *@arg: va_list type
  *Description: This function call other functions
  * when the character is found
  *Return: count of printed characters
  */
-int funct_mgr(char c, va_list arg)
+int function_manager(char c, va_list arg)
 {
 	int cont = 0;
 
@@ -30,6 +30,9 @@ int _switch(char c, va_list arg)
 
 	switch (c)
 	{
+		case '%':
+			cont += print_character(arg);
+			break;
 		case 'b':
 			cont += print_unsign(arg, 2);
 			break;
